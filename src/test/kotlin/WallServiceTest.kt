@@ -10,7 +10,6 @@ class WallServiceTest {
     fun add() {
         val service = WallService
         val post = Post(
-            id = 10,
             ownerId = 15,
             fromId = 25,
             createdBy = 1,
@@ -37,7 +36,6 @@ class WallServiceTest {
     fun update() {
         val service = WallService
         val post = Post(
-            id = 1,
             ownerId = 15,
             fromId = 25,
             createdBy = 1,
@@ -55,7 +53,7 @@ class WallServiceTest {
             postSource = null,
             reposts = null,
         )
-        service.add(Post(id=1,ownerId = 10,createdBy = 0, date = 0, fromId = 10, replyOwnerId = null, geo = null, postSource = null, reposts = null))
+        service.add(Post(ownerId = 10,createdBy = 0, date = 0, fromId = 10, replyOwnerId = null, geo = null, postSource = null, reposts = null))
         val result = service.update(post)
         assertTrue(result)
     }
