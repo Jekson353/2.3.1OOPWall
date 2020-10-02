@@ -16,15 +16,13 @@ fun main() {
             copyright = "",
             likes = 0,
             views = 0,
-            replyOwnerId = null,
             postType = "",
             signerId = 0,
-            geo = null,
-            postSource = null,
-            reposts = null,
     )
-    println("Первый пост: $post")
+    println("Оригинал первого поста: $post")
     WallService.add(post)
+    val post1 = WallService.getPost(id = 0)
+    println("Внесен в базу как: $post1")
     val twoPost = Post(
             ownerId = 15,
             fromId = 25,
@@ -38,16 +36,16 @@ fun main() {
             views = 0,
             postType = "",
             signerId = 0,
-            replyOwnerId = null,
-            geo = null,
-            postSource = null,
-            reposts = null,
     )
     println("Второй пост: $twoPost")
     WallService.add(twoPost)
+    val post2 = WallService.getPost(id = 1)
+    println("Внесен в базу как: $post2")
+
+
     val result1 = WallService.getPost(id = 1)
     println("Пост до изменения: $result1")
-    val updatedPost = twoPost.copy(likes = 10, text = "Новый текст")
+    val updatedPost = result1.copy(text = "Новый текст поста", likes = 10)
     WallService.update(updatedPost)
 
     val result2 = WallService.getPost(id = 1)

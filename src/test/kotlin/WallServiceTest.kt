@@ -14,7 +14,7 @@ class WallServiceTest {
             fromId = 25,
             createdBy = 1,
             date = 0,
-            text = "Новый пост 1",
+            text = "Новый пост 22",
             replyPostId = 10,
             comments = "",
             copyright = "",
@@ -22,13 +22,10 @@ class WallServiceTest {
             views = 0,
             postType = "",
             signerId = 0,
-            replyOwnerId = null,
-            geo = null,
-            postSource = null,
-            reposts = null,
         )
         val result = service.add(post)
-        assertEquals(result, post)
+        val addpost = post.copy(id = 1)
+        assertEquals(result, addpost)
     }
 
 
@@ -36,6 +33,7 @@ class WallServiceTest {
     fun update() {
         val service = WallService
         val post = Post(
+            id = 0,
             ownerId = 15,
             fromId = 25,
             createdBy = 1,
@@ -48,19 +46,15 @@ class WallServiceTest {
             views = 0,
             postType = "",
             signerId = 0,
-            replyOwnerId = null,
-            geo = null,
-            postSource = null,
-            reposts = null,
         )
-        service.add(Post(ownerId = 10,createdBy = 0, date = 0, fromId = 10, replyOwnerId = null, geo = null, postSource = null, reposts = null))
+        service.add(Post(ownerId = 10, createdBy = 0, date = 0, fromId = 10))
         val result = service.update(post)
         assertTrue(result)
     }
 
-    @Test
+    @Test(expected = Exception::class)
     fun getPost() {
-        val result = WallService.getPost(id = 20)
-        assertEquals(result, "Пост с таким ID не найден.")
+        val service = WallService
+        service.getPost(id = 10)
     }
 }
